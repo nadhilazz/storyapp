@@ -1,0 +1,13 @@
+{
+  "id": "/#/",
+  "start_url": "/#/",
+  "scope": "/",
+  "name": "DicodingStory App",
+  "short_name": "DicodingStory",
+  "description": "Aplikasi untuk membuat cerita.",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#d97706",
+  "icons": [
+]
+}

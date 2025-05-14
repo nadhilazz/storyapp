@@ -1,0 +1,150 @@
+.grid-story-section {
+  padding: 20px;
+  text-align: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.story-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  word-wrap: break-word;
+}
+
+.story-card:hover {
+  transform: translateY(-10px);
+}
+
+.story-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.story-content {
+  padding: 15px;
+}
+
+.story-content h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.story-description {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 15px;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.view-more-btn {
+  font-family: "Fredoka", sans-serif;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #51c94d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.view-more-btn:hover {
+  background-color: #03f403;
+}
+
+.story-waktu {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #2e2c2c;
+  margin-top: 10px;
+  flex-direction: column;
+}
+
+.story-waktu i {
+  margin-right: 5px;
+  color: #03f403;
+}
+
+.story-waktu .story-date,
+.story-waktu .story-time {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.story-waktu .story-time {
+  margin-top: 5px;
+}
+
+
+
+@media (max-width: 768px) {
+  .story-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .story-description {
+    font-size: 0.85rem;
+    white-space: normal; 
+  }
+
+  .story-time {
+    font-size: 0.75rem;
+  }
+
+  .view-more-btn {
+    padding: 8px 12px;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  }
+
+  .story-image {
+    height: 180px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+  }
+
+  .story-content h2 {
+    font-size: 1rem;
+  }
+
+  .story-description {
+    font-size: 0.8rem;
+  }
+
+  .view-more-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem; 
+  }
+
+  .story-time {
+    font-size: 0.7rem;
+  }
+
+  .story-image {
+    height: 160px; 
+  }
+}
