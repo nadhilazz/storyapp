@@ -1,4 +1,6 @@
 import LoginPresenter from "./login-presenter";
+import notyf from "../../templates/notyf";
+import { showLoading, hideLoading } from "../../utils/loading-indicator";
 
 export default class LoginPage {
   async render() {
@@ -35,6 +37,22 @@ export default class LoginPage {
     `;
   }
 
+  showError(message) {
+    notyf.error(message);
+  }
+
+  showSuccess(message) {
+    notyf.success(message);
+  }
+
+  showLoading() {
+    showLoading();
+  }
+
+  hideLoading() {
+    hideLoading();
+  }
+
   async afterRender() {
     const header = document.getElementById("header");
     if (header) header.style.display = "none";
@@ -51,14 +69,7 @@ export default class LoginPage {
       });
     }
 
-    const presenter = new LoginPresenter({
-      onLoginSuccess: (loginResult) => {
-        const header = document.getElementById("header");
-        if (header) header.style.display = "block";
-        
-        window.location.hash = "#/home";
-      },
-    });
+    const presenter = new LoginPresenter(this);
 
     const form = document.getElementById("login-form");
     form.addEventListener("submit", (e) => {

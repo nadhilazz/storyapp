@@ -1,4 +1,6 @@
 import RegisterPresenter from './registerPresenter';
+import notyf from '../../templates/notyf';
+import { showLoading, hideLoading } from '../../utils/loading-indicator';
 
 export default class RegisterPage {
   async render() {
@@ -41,6 +43,26 @@ export default class RegisterPage {
     `;
   }
 
+  showError(message) {
+    notyf.error(message);
+  }
+
+  showSuccess(message) {
+    notyf.success(message);
+  }
+
+  showLoading() {
+    showLoading();
+  }
+
+  hideLoading() {
+    hideLoading();
+  }
+
+  redirect(path) {
+    window.location.hash = path;
+  }
+
   async afterRender() {
     const header = document.getElementById("header");
     if (header) {
@@ -59,6 +81,8 @@ export default class RegisterPage {
       });
     });
 
+    const presenter = new RegisterPresenter(this);
+
     const form = document.getElementById("register-form");
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -69,7 +93,7 @@ export default class RegisterPage {
         password: document.getElementById("password").value
       };
 
-      await RegisterPresenter.handleSubmit(formData);
+      await presenter.handleSubmit(formData);
     });
   }
 }

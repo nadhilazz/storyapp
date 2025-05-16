@@ -1,35 +1,37 @@
 import StoryAPI from '../../data/api';
-import notyf from '../../templates/notyf';
-import { showLoading, hideLoading } from "../../utils/loading-indicator";
 
-const RegisterPresenter = {
+class RegisterPresenter {
+  constructor(view) {
+    this.view = view;
+  }
+
   async handleSubmit(formData) {
     const { username, email, password } = formData;
 
     if (!username || !email || !password) {
-      notyf.error("Please fill in all fields!");
+      this.view.showError("Please fill in all fields!");
       return;
     }
 
     try {
-      showLoading();
+      this.view.showLoading();
       const response = await StoryAPI.register({ name: username, email, password });
 
       if (response?.error) {
-        notyf.error(response.message || "Registration failed!");
+        this.view.showError(response.message || "Registration failed!");
       } else {
-        notyf.success("Registration successful! Redirecting...");
+        this.view.showSuccess("Registration successful! Redirecting...");
         setTimeout(() => {
-          window.location.hash = '#/login';
+          this.view.redirect('#/login');
         }, 1500);
       }
     } catch (error) {
       console.error(error);
-      notyf.error("An unexpected error occurred.");
+      this.view.showError("An unexpected error occurred.");
     } finally {
-      hideLoading();
+      this.view.hideLoading();
     }
   }
-};
+}
 
 export default RegisterPresenter;

@@ -34,12 +34,10 @@ export async function requestNotificationPermission() {
   const status = await Notification.requestPermission();
  
   if (status === 'denied') {
-    // alert('Izin notifikasi ditolak.');
     return false;
   }
  
   if (status === 'default') {
-    // alert('Izin notifikasi ditutup atau diabaikan.');
     return false;
   }
  
@@ -61,7 +59,6 @@ export async function subscribe() {
   }
 
   if (await isCurrentPushSubscriptionAvailable()) {
-    // alert('Sudah berlangganan push notification.');
     return;
   }
 
@@ -69,6 +66,8 @@ export async function subscribe() {
 
   try {
     const registration = await navigator.serviceWorker.getRegistration();
+    const failureSubscribeMessage = 'Langganan push notification gagal.';
+    const successSubscribeMessage = 'Langganan push notification berhasil.';
     if (!registration) {
       console.error('Service worker registration not found.');
       return;
@@ -81,7 +80,9 @@ export async function subscribe() {
 
     await StoryAPI.subscribePushNotification(subscription.toJSON());
     console.log('Push notification subscription successful.');
+    alert(successSubscribeMessage);
   } catch (error) {
+    alert(failureSubscribeMessage);
     console.error('Failed to subscribe to push notifications:', error);
   }
 }
@@ -108,7 +109,6 @@ export async function unsubscribe() {
       await StoryAPI.subscribePushNotification({ endpoint, keys });
       return;
     }
-    // alert(successUnsubscribeMessage);
   } catch (error) {
     alert(failureUnsubscribeMessage);
     console.error('unsubscribe: error:', error);

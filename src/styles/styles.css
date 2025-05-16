@@ -364,7 +364,6 @@ footer#footer p {
   align-items: center;
   gap: 8px;
   transition: background-color 0.3s ease;
-  display: block !important; /* force visible for testing */
 }
 
 .btn-add-to-homescreen:hover {
