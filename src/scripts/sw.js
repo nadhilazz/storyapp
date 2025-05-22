@@ -42,7 +42,26 @@ registerRoute(
 registerRoute(
   ({ request, url }) => {
     const baseUrl = new URL(CONFIG.BASE_URL);
+    // Cache story detail API responses for offline use
+    if (baseUrl.origin === url.origin && url.pathname.startsWith('/v1/stories/')) {
+      return true;
+    }
     return baseUrl.origin === url.origin && request.destination !== 'image';
+  },
+  new CacheFirst({
+    cacheName: 'story-api-detail',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+    ],
+  }),
+);
+
+registerRoute(
+  ({ request, url }) => {
+    const baseUrl = new URL(CONFIG.BASE_URL);
+    return baseUrl.origin === url.origin && request.destination !== 'image' && !url.pathname.startsWith('/v1/stories/');
   },
   new NetworkFirst({
     cacheName: 'story-api',

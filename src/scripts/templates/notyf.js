@@ -5,7 +5,7 @@ const notyf = new Notyf({
   types: [
     {
       type: 'info',
-      background: '#3498db', // Warna biru
+      background: '#3498db', 
       icon: {
         className: 'fas fa-info-circle', // Icon info
         tagName: 'i',

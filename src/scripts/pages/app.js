@@ -66,6 +66,7 @@ class App {
     this.checkAuthAndRedirect();
 
     const url = getActiveRoute();
+    console.log('Current route:', url);
     const PageClass = routes[url];
 
     if (url === '/logout') {

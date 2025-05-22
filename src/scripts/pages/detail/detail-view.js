@@ -11,7 +11,7 @@ export default class DetailStoryView {
     this.container.innerHTML = `<p>Failed to load detail: ${message}</p>`;
   }
 
-  showDetail({ name, description, photoUrl, createdAt, lat, lon }) {
+  showDetail({ id, name, description, photoUrl, createdAt, lat, lon }) {
     const formattedDate = new Date(createdAt).toLocaleDateString("en-US", {
       weekday: "long", year: "numeric", month: "long", day: "numeric"
     });
@@ -26,6 +26,7 @@ export default class DetailStoryView {
       </button>
       <br>
       <img src="${photoUrl || 'images/default.jpg'}" alt="Story Image" class="story-detail-image" />
+      <button id="save-story-btn" class="save-story-button" style="display: block; margin: 10px 0;">Simpan Cerita</button>
       <div class="story-content">
         <h2>${name}</h2>
         <p class="story-full-description">${description}</p>
